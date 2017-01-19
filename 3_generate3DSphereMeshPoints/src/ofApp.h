@@ -22,9 +22,16 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
     ofEasyCam cam;
-    vector<ofVec3f> spCoord;
+    
+    void animate();
+    
     float radius;
     int total;
     ofMesh world;
-
+    
+    float rot;
+    float animateZPos;
+    bool animation;
+    
+    float xoff,yoff;
 };
