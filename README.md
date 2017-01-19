@@ -3,3 +3,6 @@ Bunch of projects to generate 3d meshes. Main purposes are to understand 3D spac
 
 2- Generate plane geometry with ofMesh from scratch. There is debug mode to see the indices of vertices. 
 ![image](https://raw.githubusercontent.com/alptugan/3D-Studies-with-openFrameworks/master/2_generate3DPlaneMeshPoints/generate_plane_vertices_coordinates.png)
+
+3- Generate sphere geometry with ofMesh from scratch. Animate vertex points via noise function to get smooth surface morphing...
+![image](https://raw.githubusercontent.com/alptugan/3D-Studies-with-openFrameworks/master/3_generate3DSphereMeshPoints/3_sphere.png)
