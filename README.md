@@ -6,3 +6,10 @@ Bunch of projects to generate 3d meshes. Main purposes are to understand 3D spac
 
 3- Generate sphere geometry with ofMesh from scratch. Animate vertex points via noise function to get smooth surface morphing...
 ![image](https://raw.githubusercontent.com/alptugan/3D-Studies-with-openFrameworks/master/3_generate3DSphereMeshPoints/3_sphere.png)
+
+4- Generate cylinder geometry with ofMesh from scratch with a different approach. Animate top cap only via sin function. 
+todo: 
+- better comments
+- fix ugly hack of indices...
+![image](https://raw.githubusercontent.com/alptugan/3D-Studies-with-openFrameworks/master/4_generate3DCylinderMeshPoints/cylinder.png)
+
