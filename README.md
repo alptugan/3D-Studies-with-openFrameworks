@@ -11,5 +11,6 @@ Bunch of projects to generate 3d meshes. Main purposes are to understand 3D spac
 todo: 
 - better comments
 - fix ugly hack of indices...
+
 ![image](https://raw.githubusercontent.com/alptugan/3D-Studies-with-openFrameworks/master/4_generate3DCylinderMeshPoints/cylinder.png)
 
