@@ -17,3 +17,6 @@ todo:
 
 ![image](https://raw.githubusercontent.com/alptugan/3D-Studies-with-openFrameworks/master/4_generate3DCylinderMeshPoints/cylinder.png)
 
+5- Example usage of ofLight types
+
+![image](5_ofLight/oflight.png)
