@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<C7_Mesh_Web>
+	<Draw_Debug>0</Draw_Debug>
+	<Draw_FBO>0</Draw_FBO>
+	<Animate_Mesh>1</Animate_Mesh>
+	<Draw_Mesh>1</Draw_Mesh>
+	<Noise_1D>0.0027</Noise_1D>
+	<Noise_2D>0.0025</Noise_2D>
+	<Noise_3D>0.253333</Noise_3D>
+	<Movement_Amount>71.6667</Movement_Amount>
+	<Resolution>40</Resolution>
+	<Line_Thickness>2</Line_Thickness>
+	<Fill_Mesh>1</Fill_Mesh>
+	<Mesh_Fill_Color>0, 0, 0, 255</Mesh_Fill_Color>
+</C7_Mesh_Web>
