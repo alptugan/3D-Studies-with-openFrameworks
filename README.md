@@ -20,3 +20,9 @@ todo:
 5- Example usage of ofLight types
 
 ![image](5_ofLight/oflight.png)
+
+7- Create grid shaped graphics or any other image with ofFbo. Then, use this fbo as a patterned texture onto a ofPlane object. 
+
+**todo:** fix the line intersection points and ofPlane vertex points to match vertex coordinates precisely onto each other.
+
+![image](7_generate3DPlaneFboTexture/planeFboTexture.png)
