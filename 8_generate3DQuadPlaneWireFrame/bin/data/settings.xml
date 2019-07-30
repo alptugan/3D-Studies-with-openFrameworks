@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<C7_Mesh_Web>
+	<Draw_Debug>0</Draw_Debug>
+	<Draw_FBO>0</Draw_FBO>
+	<Animate_Mesh>1</Animate_Mesh>
+	<Draw_Mesh>1</Draw_Mesh>
+	<Noise_1D>0.0027</Noise_1D>
+	<Noise_2D>0.0025</Noise_2D>
+	<Noise_3D>0.253333</Noise_3D>
+	<Movement_Amount>71.6667</Movement_Amount>
+	<Resolution>40</Resolution>
+	<Line_Thickness>2</Line_Thickness>
+	<Fill_Mesh>1</Fill_Mesh>
+	<Mesh_Fill_Color>0, 0, 0, 255</Mesh_Fill_Color>
+</C7_Mesh_Web>
+<Project_Parameters>
+	<Quad_Mesh_Parameters>
+		<Fill_Mesh>1</Fill_Mesh>
+		<Mesh_Fill_Color>0, 0, 0, 255</Mesh_Fill_Color>
+		<Enable_Texture_Image>1</Enable_Texture_Image>
+		<Mesh_Width>1711</Mesh_Width>
+		<Mesh_Height>1654</Mesh_Height>
+		<Mesh_Resolution>60</Mesh_Resolution>
+		<Mesh_Stroke_Size>1</Mesh_Stroke_Size>
+		<Mesh_Stroke_Color>255, 255, 255, 255</Mesh_Stroke_Color>
+		<Animation_Parameters>
+			<Enable_Animation>1</Enable_Animation>
+			<Animation_Amount>0, 0, 158.28</Animation_Amount>
+			<Animation_Speed>0.232542</Animation_Speed>
+			<Noise_Multiplier_X>0.0339268</Noise_Multiplier_X>
+			<Noise_Multiplier_Y>0.0421907</Noise_Multiplier_Y>
+			<Animation_Resolution>3.44278, 3.06326</Animation_Resolution>
+		</Animation_Parameters>
+		<Enable_Debug>0</Enable_Debug>
+	</Quad_Mesh_Parameters>
+</Project_Parameters>
