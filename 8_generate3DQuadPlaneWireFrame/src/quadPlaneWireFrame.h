@@ -25,6 +25,8 @@ private:
     ofParameter<int>        _meshRes;          // 3d resolution of the object
     ofParameter<int>        _w, _h;            // width & height
     
+    ofParameter<bool>       _enableDepth;      // Enable / Disable depth test
+    ofParameter<bool>       _enableAliasing;
     ofParameter<bool>       _enableFill;
     ofParameter<bool>       _enableTexture;    // Wrap texture onto generated plane primitive
     ofParameter<bool>       _animate;          // Animation or not
@@ -152,7 +154,9 @@ public:
     void draw() {
         ofDisableArbTex();
         
-        ofEnableDepthTest();                                    // Enable depth sorting
+        if(_enableAliasing) ofEnableAntiAliasing();             // Enable anti-aliasing
+        if(_enableDepth) ofEnableDepthTest();                   // Enable depth sorting
+        
         ofPushStyle();
         
         animateMesh(_animate);                                  // if animation enabled change the z coordinate of the vetices
@@ -191,8 +195,11 @@ public:
         
         ofPopStyle();
         
-        ofDisableDepthTest();           // Disable depth sorting
+        if(_enableDepth) ofDisableDepthTest();                     // Disable depth sorting
         
+        ofDisableArbTex();
+        
+        if(_enableAliasing) ofDisableAntiAliasing();    // Disable AntiAliasing
         // Show vertex point indices of the mesh
         if(isDebug) {
             for (int y = 0; y < _meshH; y++){
@@ -211,6 +218,8 @@ private:
         meshGUI.setName("Quad Mesh Parameters");
         meshAnimGUI.setName("Animation Parameters");
         
+        meshGUI.add(_enableDepth.set("Enable 3D Depth Test", true));
+        meshGUI.add(_enableAliasing.set("Enable Anti-Aliasing", true));
         meshGUI.add(_enableFill.set("Fill Mesh", false));
         meshGUI.add(_meshFillColor.set("Mesh Fill Color", ofColor(0,0,0,255), ofColor(0,0,0,0), ofColor(255,255,255,255)));
         meshGUI.add(_enableTexture.set("Enable Texture Image", false));
