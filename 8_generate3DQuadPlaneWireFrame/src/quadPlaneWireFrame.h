@@ -21,20 +21,21 @@ private:
     ofParameter<ofColor>    _meshFillColor;    // Mesh Fill Color
     ofParameter<int>        _meshThickness;    // Mesh point size
     ofVboMesh               _mesh;             // the object to draw
-    ofPlanePrimitive        plane;
+    ofPlanePrimitive        plane;             // Plane primitive to fill custom drawn mesh face
     ofParameter<int>        _meshRes;          // 3d resolution of the object
     ofParameter<int>        _w, _h;            // width & height
     
     ofParameter<bool>       _enableDepth;      // Enable / Disable depth test
-    ofParameter<bool>       _enableAliasing;
-    ofParameter<bool>       _enableFill;
+    ofParameter<bool>       _enableAliasing;   // Enable / Disable anti-aliasing for smooth lines (by default it is enabled in oF)
+    ofParameter<bool>       _enableFill;       // Enable / Disable mesh surface fill color
+    ofParameter<bool>       _enableStroke;     // Enable / Disable mesh wireframe drawing
     ofParameter<bool>       _enableTexture;    // Wrap texture onto generated plane primitive
     ofParameter<bool>       _animate;          // Animation or not
     ofParameter<glm::vec3>  _meshPosDisp;      // x,y,z displacement factor in pixels
     ofParameter<float>      _animFreq;         // the speed of movement
     ofParameter<float>      _animNoiseF1;      // Animation noise multiplier
     ofParameter<float>      _animNoiseF2;      // Animation noise multiplier
-    ofParameter<glm::vec2>  _animRes;
+    ofParameter<glm::vec2>  _animRes;          // Resolution of the grid animation (This parameter affects animation resolution)
     ofParameter<bool>       isDebug;           // Enable or Disable Debug view
     
     ofParameterGroup        meshGUI;           // Mesh Parameters
@@ -119,30 +120,28 @@ public:
         }
         
     
-        // Comment the following line to disable texture image wrapping to whole mesh
+        // Can't figure out why. But the following method enables texture to cover whole mesh surface
         if(_enableTexture)
             plane.resizeToTexture(texture.getTexture());
     }
     
     void setup(int _width=-1, int _height=-1, int _resolution = 60, ofColor _color = ofColor(255), int _thickness = 1) {
         
-        _animate            = false;
-        _animFreq           = 3;
-        _animNoiseF1        = 0.05;
-        _animNoiseF2        = 0.05;
-        _meshRes            = _resolution;
-        _meshStrokeColor    = _color;
-        _meshThickness      = _thickness;
+        _animate            = false;                           // by default animation is set to false
+        _animFreq           = 3;                               // animation speed
+        _animNoiseF1        = 0.05;                            // horizontal coverage amount of noise that modifies vertices of mesh
+        _animNoiseF2        = 0.05;                            // vertical coverage amount of noise that modifies vertices of mesh
+        _meshRes            = _resolution;                     // grid resolution of the mesh
+        _meshStrokeColor    = _color;                          // Mesh stroke color
+        _meshThickness      = _thickness;                      // Mesh stroke thickness
         
-        if(_width == -1 || _height == -1) {
+        if(_width == -1 || _height == -1) {                    // Set total width and height of the mesh
             _w        = ofGetWidth();
             _h        = ofGetHeight();
         }else{
             _w        = _width;
             _h        = _height;
         }
-        
-        
         
         plane.set(_w, _h);                                      // Background for quad mesh
         _meshPosDisp = glm::vec3(0,0,60);                       // Vertex z coordinate animation
@@ -152,32 +151,29 @@ public:
     }
     
     void draw() {
-        ofDisableArbTex();
+        ofDisableArbTex();                                      // Normalize texture coordinates to make GPU calculations easier
         
         if(_enableAliasing) ofEnableAntiAliasing();             // Enable anti-aliasing
         if(_enableDepth) ofEnableDepthTest();                   // Enable depth sorting
         
-        ofPushStyle();
+        ofPushStyle();                                          // (optional) Save default oF styling to prevent color & sizing issues apart from this class
         
         animateMesh(_animate);                                  // if animation enabled change the z coordinate of the vetices
         
-        ofSetLineWidth(_meshThickness);                         // Set Mesh line thickness
-        
         if(_enableFill)                                         // Fill underneath of the generated quadmesh
         {
-            ofPushStyle();
+            ofPushStyle();                                      // (optional) Save current styling to prevent color & sizing issues
             if(_enableTexture)
-                texture.bind();
+                texture.bind();                                 // if _enableTexture enabled; start texture binding for loaded image
             else
-                ofSetColor(_meshFillColor);
+                ofSetColor(_meshFillColor);                     // else; fill with solid color
             
-            // When depth enabled quad mesh and underlying mesh graphics creates a jitter effect.
-            // Placing primitive mesh plane  a little bit lower fix the issue nearly.
-            // Anyways, it's an ugly hack. Should be fixed
-            plane.setPosition(0,0,-0.1);
+        
+            plane.setPosition(0,0,-0.1);                        // When depth enabled quad mesh and underlying mesh graphics creates a jitter effect.
+                                                                // Placing primitive mesh plane  a little bit lower fix the issue nearly.
+                                                                // Anyways, it's an ugly hack. Should be fixed
             
-            // Draw underlying plane primitive fill with color
-            plane.draw();
+            plane.draw();                                       // Draw underlying plane primitive fill with color
             
             // Draws boundiries of the mesh
             //ofFloatColor color(1.0,0.0,0.0,1.0);
@@ -186,22 +182,26 @@ public:
             //plane.drawWireframe();
             
             if(_enableTexture)
-                texture.unbind();
+                texture.unbind();                               // stop texture binding
             
-            ofPopStyle();
+            ofPopStyle();                                       // turnback syling to its old state
         }
+        
+        
+        ofSetLineWidth(_meshThickness);                         // Set Mesh line thickness
        
-        _mesh.draw(); // Draw mesh
+        _mesh.draw();                                           // Draw mesh
         
-        ofPopStyle();
+        ofPopStyle();                                           // turnback syling
         
-        if(_enableDepth) ofDisableDepthTest();                     // Disable depth sorting
+        if(_enableDepth) ofDisableDepthTest();                  // Disable depth sorting
         
-        ofDisableArbTex();
+        ofEnableArbTex();                                       // Normalize texture coordinates to make GPU calculations easier
         
-        if(_enableAliasing) ofDisableAntiAliasing();    // Disable AntiAliasing
-        // Show vertex point indices of the mesh
-        if(isDebug) {
+        if(_enableAliasing) ofDisableAntiAliasing();            // Disable AntiAliasing
+        
+        
+        if(isDebug) {                                           // Show vertex point indices of the mesh
             for (int y = 0; y < _meshH; y++){
                 for (int x=0; x < _meshW; x++){
                     int _id = x + (y * _meshW);
@@ -239,7 +239,7 @@ private:
         meshGUI.add(meshAnimGUI);
         meshGUI.add(isDebug.set("Enable Debug", isDebug));
         
-        
+        // Global event listener of the whole parameters
         ofAddListener(meshGUI.parameterChangedE(), this, &quadPlaneWireFrame::onMeshGUIChange);
     }
     
@@ -273,7 +273,7 @@ private:
                     
                     int _id = x + (y * _meshW);                                     // current vertex index
                     
-                    float zVal;// = ofSignedNoise(_time*_animFreq) * _meshPosDisp->z;  // Calculate z point animation
+                    float zVal;
                     zVal = ofNoise((x * _animRes->x) * _animNoiseF1, (y * _animRes->y) * _animNoiseF2, _time * _animFreq) * _meshPosDisp->z;
                     
                     _meshPointsMoved[_id].x = 0;                                    // vertex x coordinate
@@ -284,7 +284,6 @@ private:
                         plane.getMesh().setVertex(_id, glm::vec3(_meshPoints[_id].x + _meshPointsMoved[_id].x, _meshPoints[_id].y + _meshPointsMoved[_id].y, _meshPoints[_id].z + _meshPointsMoved[_id].z));
                     
                     _mesh.setVertex(_id, glm::vec3(_meshPoints[_id].x + _meshPointsMoved[_id].x, _meshPoints[_id].y + _meshPointsMoved[_id].y, _meshPoints[_id].z + _meshPointsMoved[_id].z));
-                    //mesh.setVertex(_id, glm::vec3(_mesh.getVertices()[_id].x + _meshPointsMoved[_id].x, _mesh.getVertices()[_id].y + _meshPointsMoved[_id].y, _mesh.getVertices()[_id].z + _meshPointsMoved[_id].z));
                 }
             }
             
@@ -293,4 +292,4 @@ private:
     }
 };
 
-#endif /* quadPlane_h */
+#endif /* quadPlaneWireFrame_h */
