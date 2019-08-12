@@ -85,11 +85,17 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackgroundGradient(ofColor(100), ofColor(0));
-    //ofEnableDepthTest();
+    
     
     ofSetLineWidth(1);
     
     cam.begin();
+    
+    
+    ofEnableDepthTest();
+    glEnable(GL_CULL_FACE); // Cull back facing polygons
+   // glCullFace(GL_FRONT); // might be GL_FRONT instead
+    
     ofPushMatrix();
     ofTranslate(-totalW*0.5, -totalH*0.5);
     
@@ -102,6 +108,9 @@ void ofApp::draw(){
    
     
     ofPopMatrix();
+    
+    ofDisableDepthTest();
+    
     
     cam.end();
     
