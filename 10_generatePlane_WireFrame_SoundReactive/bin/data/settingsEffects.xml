@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<____FX_PARAMETERS____>
+	<bloom>1</bloom>
+	<bleachbypass>0</bleachbypass>
+	<contrast>0</contrast>
+	<convolution>0</convolution>
+	<dof>0</dof>
+	<dofalt>0</dofalt>
+	<edge>0</edge>
+	<fxaa>0</fxaa>
+	<SSS>0</SSS>
+	<godrays>0</godrays>
+	<horizontaltiltshift>0</horizontaltiltshift>
+	<kaleido>0</kaleido>
+	<noisewarp>0</noisewarp>
+	<lut>0</lut>
+	<limbdarkening>0</limbdarkening>
+	<pixelate>0</pixelate>
+	<RGBShift>0</RGBShift>
+	<rimhighlighting>0</rimhighlighting>
+	<SSAO>0</SSAO>
+	<toon>0</toon>
+	<verticaltiltshift>0</verticaltiltshift>
+	<zoomblur>0</zoomblur>
+</____FX_PARAMETERS____>

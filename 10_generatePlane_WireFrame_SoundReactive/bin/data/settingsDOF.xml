@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<____DOF_PARAMETERS____>
+	<Focal_Range>4999.58</Focal_Range>
+	<Focal_Distance>700</Focal_Distance>
+	<Blur_Amount>4</Blur_Amount>
+	<Light_Position>0, 0, 4000</Light_Position>
+	<____CAM_AUTOPILOT_MOVEMENT____>
+		<Enable_Cam_Auto-pilot>0</Enable_Cam_Auto-pilot>
+		<Animation_Speed>0.384354</Animation_Speed>
+		<Cam_Move_Limits>2446.76, 2502.29, 114.397</Cam_Move_Limits>
+		<Cam_Offset>-371.512, -746.356, 2460.64</Cam_Offset>
+	</____CAM_AUTOPILOT_MOVEMENT____>
+</____DOF_PARAMETERS____>

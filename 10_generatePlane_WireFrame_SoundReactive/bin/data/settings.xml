@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<____APP_PARAMETERS____>
+	<Enable_Depth_Sorting>1</Enable_Depth_Sorting>
+	<Enable_trail>0</Enable_trail>
+	<Trail_Amount>8.44275</Trail_Amount>
+	<Show_Only_Texture>1</Show_Only_Texture>
+	<____CAM_AUTOPILOT_MOVEMENT____>
+		<Enable_Cam_Auto-pilot>0</Enable_Cam_Auto-pilot>
+		<Animation_Speed>0.367347</Animation_Speed>
+		<Cam_Move_Limits>2033.53, 2573.62, 3224.49</Cam_Move_Limits>
+		<Cam_Offset>362.626, -414.827, 420.936</Cam_Offset>
+	</____CAM_AUTOPILOT_MOVEMENT____>
+	<____QUAD_MESH_PARAMETERS____>
+		<Enable_3D_Depth_Test>0</Enable_3D_Depth_Test>
+		<Enable_Anti-Aliasing>1</Enable_Anti-Aliasing>
+		<Fill_Mesh>1</Fill_Mesh>
+		<Fill_With_Solid___Gradient_Color>1</Fill_With_Solid___Gradient_Color>
+		<Mesh_Fill_Color>0, 0, 0, 255</Mesh_Fill_Color>
+		<Enable_Texture_Image>0</Enable_Texture_Image>
+		<Mesh_Width>4108</Mesh_Width>
+		<Mesh_Height>3689</Mesh_Height>
+		<Mesh_Resolution>31</Mesh_Resolution>
+		<Mesh_Stroke_Size>2</Mesh_Stroke_Size>
+		<Stroke_Color_With_Solid___Gradient_Color>1</Stroke_Color_With_Solid___Gradient_Color>
+		<Mesh_Stroke_Color>26, 253, 71, 255</Mesh_Stroke_Color>
+		<Animation_Parameters>
+			<Set_Vertical_Flow_Animation_Amount>0.00663335</Set_Vertical_Flow_Animation_Amount>
+			<Enable_Animation>1</Enable_Animation>
+			<Animation_Amount>33.1412, 61.474, 543.133</Animation_Amount>
+			<Animation_Speed>3.07094</Animation_Speed>
+			<Noise_Multiplier_X>0.00714979</Noise_Multiplier_X>
+			<Noise_Multiplier_Y>0.012356</Noise_Multiplier_Y>
+			<Animation_Resolution>3.07501, 0.196582</Animation_Resolution>
+			<Flip_Animation_Vertical>0</Flip_Animation_Vertical>
+			<Animation_Type>1</Animation_Type>
+		</Animation_Parameters>
+		<Enable_Debug>0</Enable_Debug>
+	</____QUAD_MESH_PARAMETERS____>
+	<____AUDIO_FFT_PARAMETERS____>
+		<Enable_Sound_Interaction>1</Enable_Sound_Interaction>
+		<audioThreshold>1</audioThreshold>
+		<audioPeakDecay>0.959218</audioPeakDecay>
+		<audioMaxDecay>0.995</audioMaxDecay>
+		<audioMirror>1</audioMirror>
+		<High_Range>0, 0.5</High_Range>
+		<Mid_Range>0, 0.5</Mid_Range>
+		<Low_Range>0, 0.5</Low_Range>
+		<Average_PEAK></Average_PEAK>
+	</____AUDIO_FFT_PARAMETERS____>
+</____APP_PARAMETERS____>
