@@ -4,6 +4,11 @@
 void ofApp::setup(){
     ofBackground(0);
     cam.setDistance(80);
+    
+    //cam.removeAllInteractions();
+    //cam.addInteraction(ofEasyCam::TRANSFORM_TRANSLATE_XY,OF_MOUSE_BUTTON_LEFT);
+    //cam.addInteraction(ofEasyCam::TRANSFORM_ROTATE, OF_MOUSE_BUTTON_LEFT);
+    //cam.addInteraction(ofEasyCam::TRANSFORM_SCALE, OF_MOUSE_BUTTON_MIDDLE);
 }
 
 //--------------------------------------------------------------

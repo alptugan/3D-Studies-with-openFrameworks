@@ -91,6 +91,7 @@ class ofApp : public ofBaseApp{
     /* POST PROCESSING */
     ofxPanel guiEffect;                                 // Post processing effects
     vector<ofParameter<bool>> gFxBtns;                  // Enable disable butons for the specified effect
+    ofParameter<bool> gFxEnableSoundInteraction;        // Enable disable sound interactive fx mode
     ofxPostProcessing post;                             // Post Processing object
     void initPostProcessing();                          // Setup post processing object
     

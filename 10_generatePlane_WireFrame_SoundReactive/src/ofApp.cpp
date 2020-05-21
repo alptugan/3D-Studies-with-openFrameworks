@@ -42,11 +42,6 @@ void ofApp::setup(){
     
     /* CAM MOVEMENT PARAMETERS */
     cam.setPosition(0, 0, 1850);
-    //cam.removeAllInteractions();
-    //cam.addInteraction(ofEasyCam::TRANSFORM_TRANSLATE_XY,OF_MOUSE_BUTTON_LEFT);
-    //cam.addInteraction(ofEasyCam::TRANSFORM_ROTATE, OF_MOUSE_BUTTON_LEFT);
-    //cam.addInteraction(ofEasyCam::TRANSFORM_SCALE, OF_MOUSE_BUTTON_MIDDLE);
-    
     /* GUI AUTOPILOT CAMERA */
     gCamMovPathParms.setName("### CAM AUTOPILOT MOVEMENT ###");
     gCamMovPathParms.add(gEnableAutoPilotCam.set("Enable Cam Auto-pilot", false));
@@ -80,7 +75,6 @@ void ofApp::setup(){
     
     // Load last session settings
     gui.loadFromFile(xmlSettingsPath);
-    
     
     // Init dof
     dof.setup(ofGetWidth(), ofGetHeight());
@@ -121,8 +115,8 @@ void ofApp::setup(){
     ofxGuiSetDefaultWidth(154);
     
     guiEffect.setup( "### FX ###", xmlSettingsPathFx );
+    guiEffect.add(gFxEnableSoundInteraction.set("ENABLE MANUAL CONTROL MODE", false));
     gFxBtns.resize(post.size());
-    
     ofLog() << "--------------------------------------";
     ofLog() << "EFFECT NAMES :";
     ofLog() << "--------------------------------------";
@@ -135,8 +129,6 @@ void ofApp::setup(){
     guiEffect.setBorderColor(gBorder2);
     guiEffect.loadFromFile(xmlSettingsPathFx);
     
-    
-
     
     /* FFT SECTION */
     fftLive.setMirrorData(false);
@@ -219,46 +211,47 @@ void ofApp::update(){
     // Sound interaction conditions for post processing effects
     // The logic is a little bit dirty
     // This part depends on your creativity :)
-    if(fftLive.getAveragePeak() > 0.4) {
-        gFxBtns[0] = true;
-    }else{
-        gFxBtns[0] = false;
-    }
-    
-    if(fftLive.getAveragePeak() > 0.7) {
-        gFxBtns[11] = true;
-        gFxBtns[12] = true;
-        //
-    }else{
-        gFxBtns[11] = false;
-        gFxBtns[12] = false;
-        //gFxBtns[8] = false;
-    }
-    
-    if(fftLive.getAveragePeak() > 0.73) {
-        isDofDepth = true;
-        gFxBtns[15] = true;
-        gFxBtns[6] = true;
-    }else{
-        isDofDepth = false;
-        gFxBtns[15] = false;
-        gFxBtns[6] = false;
-    }
-    
-    if(gEnableAutoPilotCam)
+    if(gFxEnableSoundInteraction)
     {
-        if(camera_location.z < -2500 || camera_location.z > 2500 ) {
-            //terrain._enableSolidFillColor = false;
+        if(fftLive.getAveragePeak() > 0.4) {
             gFxBtns[0] = true;
-            //gFxBtns[11] = true;
-            //gFxBtns[12] = true;
         }else{
-            //terrain._enableSolidFillColor = true;
-            //gFxBtns[11] = false;
-            //gFxBtns[12] = false;
+            gFxBtns[0] = false;
         }
         
-       
+        if(fftLive.getAveragePeak() > 0.7) {
+            gFxBtns[11] = true;
+            gFxBtns[12] = true;
+            //
+        }else{
+            gFxBtns[11] = false;
+            gFxBtns[12] = false;
+            //gFxBtns[8] = false;
+        }
+        
+        if(fftLive.getAveragePeak() > 0.73) {
+            isDofDepth = true;
+            gFxBtns[15] = true;
+            gFxBtns[6] = true;
+        }else{
+            isDofDepth = false;
+            gFxBtns[15] = false;
+            gFxBtns[6] = false;
+        }
+        
+        if(gEnableAutoPilotCam)
+        {
+            if(camera_location.z < -2500 || camera_location.z > 2500 ) {
+                //terrain._enableSolidFillColor = false;
+                gFxBtns[0] = true;
+                //gFxBtns[11] = true;
+                //gFxBtns[12] = true;
+            }else{
+                //terrain._enableSolidFillColor = true;
+                //gFxBtns[11] = false;
+                //gFxBtns[12] = false;
+            }
+        }
     }
     
     // Enable/Disable the selected effects

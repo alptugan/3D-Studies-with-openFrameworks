@@ -26,12 +26,12 @@
 		<Animation_Parameters>
 			<Set_Vertical_Flow_Animation_Amount>0.00663335</Set_Vertical_Flow_Animation_Amount>
 			<Enable_Animation>1</Enable_Animation>
-			<Animation_Amount>33.1412, 61.474, 543.133</Animation_Amount>
-			<Animation_Speed>3.07094</Animation_Speed>
-			<Noise_Multiplier_X>0.00714979</Noise_Multiplier_X>
-			<Noise_Multiplier_Y>0.012356</Noise_Multiplier_Y>
+			<Animation_Amount>0, 0, 543.133</Animation_Amount>
+			<Animation_Speed>0.0767736</Animation_Speed>
+			<Noise_Multiplier_X>0.0227683</Noise_Multiplier_X>
+			<Noise_Multiplier_Y>0.0527558</Noise_Multiplier_Y>
 			<Animation_Resolution>3.07501, 0.196582</Animation_Resolution>
-			<Flip_Animation_Vertical>0</Flip_Animation_Vertical>
+			<Flip_Animation_Vertical>1</Flip_Animation_Vertical>
 			<Animation_Type>1</Animation_Type>
 		</Animation_Parameters>
 		<Enable_Debug>0</Enable_Debug>

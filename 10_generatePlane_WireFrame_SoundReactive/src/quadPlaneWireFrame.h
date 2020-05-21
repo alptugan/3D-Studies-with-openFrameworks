@@ -45,7 +45,6 @@ private:
     ofParameterGroup        meshAnimGUI;                // Mesh Animation Parameters
     
     ofImage                 texture;                    // Underneath solid texture Filling option with texture
-    float                   preAnimFreq;                // keep track of the animation state
     float flowVal;                                      // Yet another variable to min/max limits of the noise function
     
     ofParameter<float> _setFlowAnim;                    // Set max flow value
@@ -85,25 +84,9 @@ public:
         this->avgPeak = ofMap(avgPeak,0,1,0,1);
     }
     
-    void setFFTArray(vector<float> audioData, int size) {
-
+    void setFFTArray(vector<float> audioData, int _size) {
         
-        this->_type = _type;
-        
-        // type: 0 - Default basic vertex z depth animation
-        if(_type == 0)
-        {
-            freqPeakArrHist.clear();
-            freqPeakArrHist.resize(size);
-            
-            for(int i = 0; i < size; i++) {
-                freqPeakArrHist[i%_meshH][i] = audioData[i];
-                //freqPeakArr[i] = audioData[rand() % size];
-            }
-        
-        // type: 1 - Flowing type animation
-        } else if (_type == 1) {
-            
+        if(this->_type == 0) {
             // The following condition enables the flowing visual of sound data
             if(freqPeakArrHist.size() > _meshH) {
                 freqPeakArrHist.erase(freqPeakArrHist.begin(), freqPeakArrHist.begin() + 1);
@@ -117,7 +100,6 @@ public:
                 }
                 
                 freqPeakArrHist.push_back(vector<float>());
-                //freqPeakArrHist.insert(freqPeakArrHist.begin(), vector<float>());
                 
                 for (int x = 0; x < _meshW; x++){
                     int _id;
@@ -129,27 +111,11 @@ public:
                     }
                     
                     freqPeakArrHist[y].push_back(audioData[_id]);
-                    //freqPeakArrHist[y].insert(freqPeakArrHist[y].begin(), audioData[x]);
                     
                     // the following condition clears the unnecessary columns.
                     if(freqPeakArrHist[y].size() > _meshW) {
                         freqPeakArrHist[y].pop_back();
                     }
-                }
-            }
-            
-        // type: 2 - yet another basic vertex z depth animation, flowing  logic
-        } else if(_type == 2) {
-            for (int y = 0; y < _meshH; y++){
-                
-                if(freqPeakArrHist.size() > _meshH ) {
-                    freqPeakArrHist.erase(freqPeakArrHist.begin());
-                }
-                
-                freqPeakArrHist.push_back(vector<float>(_meshW));
-                
-                for (int x = 0; x < _meshW; x++){
-                    freqPeakArrHist[y][x] = audioData[x];
                 }
             }
         }
@@ -244,7 +210,7 @@ public:
     void setup(int _width=-1, int _height=-1, int _resolution = 60, ofColor _color = ofColor(255), int _thickness = 1) {
         
         _animate            = false;                           // by default animation is set to false
-        _animFreq           = 3;                               // animation speed
+        _animFreq           = 0.03;                               // animation speed
         _animNoiseF1        = 0.05;                            // horizontal coverage amount of noise that modifies vertices of mesh
         _animNoiseF2        = 0.05;                            // vertical coverage amount of noise that modifies vertices of mesh
         _meshRes            = _resolution;                     // grid resolution of the mesh
@@ -324,8 +290,6 @@ public:
 private:
     void generateGUI() {
         
-        preAnimFreq = _animFreq;
-        
         meshGUI.setName("### QUAD MESH PARAMETERS ###");
         meshAnimGUI.setName("Animation Parameters");
         
@@ -347,7 +311,7 @@ private:
         meshAnimGUI.add(_animate.set("Enable Animation", _animate));
         meshAnimGUI.add(_type.set("Animation Type", 1, 0, 2));
         meshAnimGUI.add(_meshPosDisp.set("Animation Amount", _meshPosDisp, glm::vec3(0,0,0), glm::vec3(1000,1000,1000)));
-        meshAnimGUI.add(_animFreq.set("Animation Speed", _animFreq, 0, 40));
+        meshAnimGUI.add(_animFreq.set("Animation Speed", _animFreq, 0, 1));
         meshAnimGUI.add(_animNoiseF1.set("Noise Multiplier X", _animNoiseF1, 0, 0.5));
         meshAnimGUI.add(_animNoiseF2.set("Noise Multiplier Y", _animNoiseF2, 0, 0.5));
         //meshAnimGUI.add(_animRes.set("Animation Resolution", glm::vec2(0.1), glm::vec2(0.01), glm::vec2(1)));
@@ -366,11 +330,7 @@ private:
 
         if( params.getName() == _animate.getName() ){
             if(!_animate) {
-                preAnimFreq = _animFreq;
                 animateMesh(false);
-                //_animFreq = 0;
-            }else{
-                //_animFreq = preAnimFreq;
             }
         }
     }
@@ -378,15 +338,16 @@ private:
     void animateMesh(bool _enableAnimation) {
         if(_enableAnimation) {
 
-            _time = ofGetElapsedTimef() * _setFlowAnim;
+            _time = ofGetElapsedTimef() * _animFreq;
             
             _meshPointsMoved.clear();
             
             _meshPointsMoved.resize(_meshPoints.size());
             
-            
-            flowVal -= ofMap(avgPeak,0, 1, 0, _setFlowAnim * 0.1);
-            
+            if(this->_type == 0)
+                flowVal -= ofMap(avgPeak,0, 1, 0, _setFlowAnim * 0.1);
+            else if(this->_type == 1)
+                flowVal -= _animFreq;
             
             for (int y = 0; y < _meshH; y++){
                 for (int x = 0; x < _meshW; x++){
@@ -399,19 +360,23 @@ private:
                         _id = (_meshPointsMoved.size() - 1) - (x + (y * _meshW));   // reverse the vertex index
                     }
                     
-                    float zVal;
+                    float zVal = 0;
                     
-                    zVal = ofSignedNoise((x) * _animNoiseF1, (y) * _animNoiseF2, _time * flowVal) * ( (_meshPosDisp->z * this->avgPeak) );
+                    if(this->_type == 0) {
+                        if(_animNoiseF1 != 0 && _animNoiseF2 != 0)
+                            zVal = ofSignedNoise((x) * _animNoiseF1, (y) * _animNoiseF2, _time * flowVal) * ( (_meshPosDisp->z * this->avgPeak) );
+                        
+                        _meshPointsMoved[_id].x = zVal;                                                     // vertex x coordinate
+                        _meshPointsMoved[_id].y = zVal;                                                     // vertex y coordinate
+                        _meshPointsMoved[_id].z = freqPeakArrHist[y][x] * _meshPosDisp->z;                  // vertex z coordinate
+                    }
                     
-                    _meshPointsMoved[_id].x = zVal;                                                     // vertex x coordinate
-                    _meshPointsMoved[_id].y = zVal;                                                                     // vertex y coordinate
-                    
-                    //zVal = ofSignedNoise((x) * _animNoiseF1, (y) * _animNoiseF2) * ( (_meshPosDisp->x ) );
-                    
-                    //_meshPointsMoved[_id].x = zVal;                                                     // vertex x coordinate
-                    //_meshPointsMoved[_id].y = avgPeak * _meshPosDisp->y;                                // vertex y coordinate
-                    _meshPointsMoved[_id].z = freqPeakArrHist[y][x] * _meshPosDisp->z;                  // vertex z coordinate
-                
+                    if(this->_type == 1) {
+                        zVal = ofSignedNoise((x) * _animNoiseF1, (y) * _animNoiseF2 + flowVal, _time) * ( _meshPosDisp->z );
+                        _meshPointsMoved[_id].x = 0;
+                        _meshPointsMoved[_id].y = 0;
+                        _meshPointsMoved[_id].z = zVal;
+                    }
                 
                     // Enable fill layer under the terrain wireframe
                     if(_enableFill)
