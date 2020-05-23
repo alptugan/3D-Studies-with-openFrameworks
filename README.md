@@ -31,7 +31,7 @@ todo:
 ![image](8_generate3DQuadPlaneWireFrame/quadMesh.png)
 ![image](8_generate3DQuadPlaneWireFrame/textured_QuadMesh.png)
 
-<b>9- Create quad look primitive mesh wireframe vertex points. Audio data via FFT analysis structures the terrain topology. Wandering sentinels position themselves with Perlin Noise. According to average peak values and frequency spectrum data peak levels several visual elements intracts with each other. </b>
+<b>10- Create quad look primitive mesh wireframe vertex points. Audio data via FFT analysis structures the terrain topology. Wandering sentinels position themselves with Perlin Noise. According to average peak values and frequency spectrum data peak levels several visual elements intracts with each other. </b>
 
 The project  source code is available at the following link. Refer to comments and readme files
 - https://bit.ly/2X8aX67
