@@ -12,39 +12,40 @@
 	</____CAM_AUTOPILOT_MOVEMENT____>
 	<____QUAD_MESH_PARAMETERS____>
 		<Enable_3D_Depth_Test>0</Enable_3D_Depth_Test>
-		<Enable_Anti-Aliasing>1</Enable_Anti-Aliasing>
+		<Enable_Anti-Aliasing>0</Enable_Anti-Aliasing>
 		<Fill_Mesh>1</Fill_Mesh>
 		<Fill_With_Solid___Gradient_Color>1</Fill_With_Solid___Gradient_Color>
 		<Mesh_Fill_Color>0, 0, 0, 255</Mesh_Fill_Color>
 		<Enable_Texture_Image>0</Enable_Texture_Image>
-		<Mesh_Width>4108</Mesh_Width>
+		<Mesh_Width>4085</Mesh_Width>
 		<Mesh_Height>3689</Mesh_Height>
-		<Mesh_Resolution>31</Mesh_Resolution>
-		<Mesh_Stroke_Size>2</Mesh_Stroke_Size>
+		<Mesh_Resolution>59</Mesh_Resolution>
+		<Mesh_Stroke_Size>5</Mesh_Stroke_Size>
 		<Stroke_Color_With_Solid___Gradient_Color>1</Stroke_Color_With_Solid___Gradient_Color>
-		<Mesh_Stroke_Color>26, 253, 71, 255</Mesh_Stroke_Color>
+		<Mesh_Stroke_Color>222, 253, 248, 255</Mesh_Stroke_Color>
 		<Animation_Parameters>
-			<Set_Vertical_Flow_Animation_Amount>0.00663335</Set_Vertical_Flow_Animation_Amount>
+			<Set_Vertical_Flow_Animation_Amount>0.00118423</Set_Vertical_Flow_Animation_Amount>
 			<Enable_Animation>1</Enable_Animation>
-			<Animation_Amount>0, 0, 543.133</Animation_Amount>
-			<Animation_Speed>0.0767736</Animation_Speed>
-			<Noise_Multiplier_X>0.0227683</Noise_Multiplier_X>
-			<Noise_Multiplier_Y>0.0527558</Noise_Multiplier_Y>
+			<Animation_Amount>0, 0, 543.399</Animation_Amount>
+			<Animation_Speed>0.00251631</Animation_Speed>
+			<Noise_Multiplier_X>0.00308031</Noise_Multiplier_X>
+			<Noise_Multiplier_Y>0.00776586</Noise_Multiplier_Y>
 			<Animation_Resolution>3.07501, 0.196582</Animation_Resolution>
-			<Flip_Animation_Vertical>1</Flip_Animation_Vertical>
-			<Animation_Type>1</Animation_Type>
+			<Flip_Animation_Vertical>0</Flip_Animation_Vertical>
+			<Animation_Type>0</Animation_Type>
 		</Animation_Parameters>
 		<Enable_Debug>0</Enable_Debug>
 	</____QUAD_MESH_PARAMETERS____>
 	<____AUDIO_FFT_PARAMETERS____>
 		<Enable_Sound_Interaction>1</Enable_Sound_Interaction>
 		<audioThreshold>1</audioThreshold>
-		<audioPeakDecay>0.959218</audioPeakDecay>
+		<audioPeakDecay>0.966446</audioPeakDecay>
 		<audioMaxDecay>0.995</audioMaxDecay>
-		<audioMirror>1</audioMirror>
+		<audioMirror>0</audioMirror>
 		<High_Range>0, 0.5</High_Range>
 		<Mid_Range>0, 0.5</Mid_Range>
 		<Low_Range>0, 0.5</Low_Range>
 		<Average_PEAK></Average_PEAK>
+		<Gain_Make_Up>4.87415</Gain_Make_Up>
 	</____AUDIO_FFT_PARAMETERS____>
 </____APP_PARAMETERS____>

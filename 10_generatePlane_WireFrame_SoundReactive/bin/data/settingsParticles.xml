@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <____PARTICLE_PARAMETERS____>
 	<Particle_Colors>255, 0, 0, 255</Particle_Colors>
-	<Particle_Private_Connection_Colors>255, 11, 4, 255</Particle_Private_Connection_Colors>
-	<Particle_Waves_Connection_Colors>58, 255, 128, 255</Particle_Waves_Connection_Colors>
+	<Particle_Private_Connection_Colors>239, 255, 230, 255</Particle_Private_Connection_Colors>
+	<Particle_Waves_Connection_Colors>241, 255, 233, 255</Particle_Waves_Connection_Colors>
+	<Enable_Particle_Lines>1</Enable_Particle_Lines>
+	<Enable_Particle_Wave_Lines_>1</Enable_Particle_Wave_Lines_>
 </____PARTICLE_PARAMETERS____>

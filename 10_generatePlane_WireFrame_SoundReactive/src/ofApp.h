@@ -46,6 +46,7 @@ class ofApp : public ofBaseApp{
     ofParameter<bool> isSoundInteractionEnabled;        // Enable Disable sound interaction
     ofParameter<bool> gEnableDepth;                     // Enable Disable depth sorting
     ofParameter<string> averagePeak;                    // Shows average peak for the sound spectrum
+    ofParameter<float> audioGain;                       // Increase when recording internal
     
     /* WANDERING PARTICLE PARAMETERS */
     ofxPanel guiParticle;

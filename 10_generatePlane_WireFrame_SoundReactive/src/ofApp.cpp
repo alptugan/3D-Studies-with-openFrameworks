@@ -65,6 +65,7 @@ void ofApp::setup(){
     audioGui.add(audioMaxDecay.setup("audioMaxDecay", 0.995, 0.0, 1.0)->getParameter());
     audioGui.add(audioMirror.setup("audioMirror", true)->getParameter());
     audioGui.add(averagePeak.set("Average PEAK",""));
+    audioGui.add(audioGain.set("Gain Make Up", 1, 0, 10));
     audioGui.add(audioHighThres.set("High Range", glm::vec2(0, 0.5), glm::vec2(0), glm::vec2(5)));
     audioGui.add(audioMidThres.set("Mid Range", glm::vec2(0, 0.5), glm::vec2(0), glm::vec2(5)));
     audioGui.add(audioLowThres.set("Low Range", glm::vec2(0, 0.5), glm::vec2(0), glm::vec2(5)));
@@ -115,7 +116,7 @@ void ofApp::setup(){
     ofxGuiSetDefaultWidth(154);
     
     guiEffect.setup( "### FX ###", xmlSettingsPathFx );
-    guiEffect.add(gFxEnableSoundInteraction.set("ENABLE MANUAL CONTROL MODE", false));
+    guiEffect.add(gFxEnableSoundInteraction.set("ENABLE MANUAL CONTROL MODE", true));
     gFxBtns.resize(post.size());
     ofLog() << "--------------------------------------";
     ofLog() << "EFFECT NAMES :";
@@ -211,15 +212,17 @@ void ofApp::update(){
     // Sound interaction conditions for post processing effects
     // The logic is a little bit dirty
     // This part depends on your creativity :)
+    
+    
     if(gFxEnableSoundInteraction)
     {
-        if(fftLive.getAveragePeak() > 0.4) {
+        if(fftLive.getAveragePeak() * audioGain > 0.4) {
             gFxBtns[0] = true;
         }else{
             gFxBtns[0] = false;
         }
         
-        if(fftLive.getAveragePeak() > 0.7) {
+        if(fftLive.getAveragePeak() * audioGain > 0.7) {
             gFxBtns[11] = true;
             gFxBtns[12] = true;
             //
@@ -229,7 +232,7 @@ void ofApp::update(){
             //gFxBtns[8] = false;
         }
         
-        if(fftLive.getAveragePeak() > 0.73) {
+        if(fftLive.getAveragePeak() * audioGain > 0.73) {
             isDofDepth = true;
             gFxBtns[15] = true;
             gFxBtns[6] = true;
@@ -237,6 +240,14 @@ void ofApp::update(){
             isDofDepth = false;
             gFxBtns[15] = false;
             gFxBtns[6] = false;
+        }
+        
+        if(fftLive.getAveragePeak() * audioGain > 0.23) {
+            gFxBtns[11] = false;
+            gFxBtns[11] = false;
+        }else{
+            gFxBtns[11] = true;
+            gFxBtns[11] = true;
         }
         
         if(gEnableAutoPilotCam)
