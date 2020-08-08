@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Cateneoid_Surface_Parameters>
+	<Number_Of_Points>54</Number_Of_Points>
+	<Distance_Between_Points>26.6461</Distance_Between_Points>
+	<v_Range>-13.125</v_Range>
+	<c_Constant>-4.25</c_Constant>
+	<Depth>1</Depth>
+	<CHANGE_DRAWING_MODE>0</CHANGE_DRAWING_MODE>
+	<ANIMATION_PARAMETERS>
+		<Enable_Animation>1</Enable_Animation>
+		<Speed>0.0142857</Speed>
+		<Animation_Amount>53.0612</Animation_Amount>
+		<Enable_Vertical_Rotation>0.165816</Enable_Vertical_Rotation>
+		<Size>5000</Size>
+	</ANIMATION_PARAMETERS>
+</Cateneoid_Surface_Parameters>
