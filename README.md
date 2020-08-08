@@ -35,5 +35,18 @@ todo:
 
 The project  source code is available at the following link. Refer to comments and readme files
 - https://bit.ly/2X8aX67
+- Sound interactive demo video : https://www.youtube.com/watch?v=HU2Ao463gUM&list=PLvcJjvBzWDXbFKoNlFn2D_IgR-Hgr5D1m&index=9
 
 ![image](10_generatePlane_WireFrame_SoundReactive/bin/data/Sentinels-rendered_images/2020-05-18-02-53-59-370.jpg)
+
+
+<b>12- Catenoid Minimal Surface Algorithm:</b>
+"A catenoid is a type of surface, arising by rotating a catenary curve about an axis. It is a minimal surface, meaning that it occupies the least area when bounded by a closed space. It was formally described in 1744 by the mathematician Leonhard Euler.
+The project  source code is available at the following link. Refer to comments and readme files." -wikipedia
+
+I implement the original algorithm by Euler. Then, customize the algorithm for catesian coordinates and my own adjustments. Several option can be configured via GUI. The following images are from my custom audiovisual application. 
+
+
+![image](12_Catenoid_Minimal_Surface/bin/c32_Catenoid4642.png)
+![image](12_Catenoid_Minimal_Surface/bin/c32_Catenoid10410.png)
+![image](12_Catenoid_Minimal_Surface/bin/c32_Catenoid17718.png)
