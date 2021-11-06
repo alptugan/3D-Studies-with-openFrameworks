@@ -26,10 +26,10 @@
 		<Animation_Parameters>
 			<Set_Vertical_Flow_Animation_Amount>0.00118423</Set_Vertical_Flow_Animation_Amount>
 			<Enable_Animation>1</Enable_Animation>
-			<Animation_Amount>0, 0, 543.399</Animation_Amount>
-			<Animation_Speed>0.00251631</Animation_Speed>
-			<Noise_Multiplier_X>0.00308031</Noise_Multiplier_X>
-			<Noise_Multiplier_Y>0.00776586</Noise_Multiplier_Y>
+			<Animation_Amount>30.3693, 0, 543.045</Animation_Amount>
+			<Animation_Speed>0.00182215</Animation_Speed>
+			<Noise_Multiplier_X>0.0869863</Noise_Multiplier_X>
+			<Noise_Multiplier_Y>0.00763571</Noise_Multiplier_Y>
 			<Animation_Resolution>3.07501, 0.196582</Animation_Resolution>
 			<Flip_Animation_Vertical>0</Flip_Animation_Vertical>
 			<Animation_Type>0</Animation_Type>
@@ -46,6 +46,6 @@
 		<Mid_Range>0, 0.5</Mid_Range>
 		<Low_Range>0, 0.5</Low_Range>
 		<Average_PEAK></Average_PEAK>
-		<Gain_Make_Up>4.87415</Gain_Make_Up>
+		<Gain_Make_Up>1.36054</Gain_Make_Up>
 	</____AUDIO_FFT_PARAMETERS____>
 </____APP_PARAMETERS____>

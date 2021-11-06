@@ -3,7 +3,14 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0, 0, 0);
+    ofSetWindowPosition(0,0);
+    ofSetWindowShape(1920, 1080);
     catenoidSurface.setup();
+    
+    int digit = 42;
+    cout << digit << " : " << &digit << " : " << *(&digit) << endl;
+    printf("The address of digit = %d.", digit);
+
 }
 
 //--------------------------------------------------------------
@@ -18,7 +25,9 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if(key == 'd') {
+        catenoidSurface.isDebug = !catenoidSurface.isDebug;
+    }
 }
 
 //--------------------------------------------------------------

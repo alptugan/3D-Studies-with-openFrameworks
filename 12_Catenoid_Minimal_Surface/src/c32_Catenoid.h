@@ -52,9 +52,13 @@ private:
     
     // Cam path Locations
     vector<glm::vec3> log_list;
+
+
     
 public:
-    
+    // gui show hide
+    bool isDebug;
+
     c32_Catenoid() {
         gui.setup("Cateneoid Surface Parameters");
         
@@ -203,7 +207,9 @@ public:
         ofPopStyle();
         ofPopMatrix();
         
-        gui.draw();
+
+        if(isDebug)
+            gui.draw();
     }
     
     

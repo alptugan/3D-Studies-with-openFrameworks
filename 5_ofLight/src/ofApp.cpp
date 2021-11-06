@@ -25,7 +25,9 @@ void ofApp::setup(){
     
     xx = 0;
     yy = 0;
-    zz = 0;
+    zz = 360;
+    light.setPosition(xx, yy, zz);
+    cam.setPosition(0, 0, 700);
 }
 
 //--------------------------------------------------------------
@@ -35,31 +37,35 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
-    ofEnableDepthTest();
-    cam.begin();
-    
     if(!isStopAnim)
     {
-        yy = cos(ofGetElapsedTimef() * 0.4) * 250;
-        zz = sin(ofGetElapsedTimef() * 0.4) * 250;
+        xx = cos(ofGetElapsedTimef() * 2) * 250;
+        zz = sin(ofGetElapsedTimef() * 2) * 250;
     }
     
     
-    light.setPosition(xx, yy, zz);
-    ofPushStyle();
+    ofEnableDepthTest();
+    //cam.setPosition(xx, 0, 700);
+    cam.lookAt(glm::vec3(0));
+    cam.begin();
+    
+    
+    
+    
+    //light.setPosition(xx, yy, zz);
+    //ofPushStyle();
     light.draw();
+    ofPushMatrix();
+    ofRotateDeg(ofGetElapsedTimef()*20, 0, 1, 0);
     
-    ofRotateDeg(ofGetElapsedTimef()*10, 1, 1, 0);
-    
-    light.enable();
     ofEnableLighting();
+    light.enable();
     ofSetColor(255, 255, 255);
     ofDrawBox(0,0,0,220);
     ofDisableLighting();
     light.disable();
-    
-    ofPopStyle();
+    ofPopMatrix();
+    //ofPopStyle();
     
     cam.end();
     
@@ -88,12 +94,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    isStopAnim = true;
+    //isStopAnim = true;
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    isStopAnim = false;
+    //isStopAnim = false;
 }
 
 //--------------------------------------------------------------
