@@ -3,10 +3,10 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    scl = 100; // Set Scale of grids
+    scl = 15; // Set Scale of grids
     
-    terrainW = 800;
-    terrainH = 800;
+    terrainW = ofGetWidth()*2;
+    terrainH = ofGetHeight()*2;
     
     terrainZPos = 40;
     cols = terrainW / scl; // set rows per scl
@@ -16,8 +16,8 @@ void ofApp::setup(){
     cout << "columns numbers: " << cols << endl;
     cout << "rows numbers: " << cols << endl;
     
-    mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
-    //mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    //mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
+    mesh.setMode(OF_PRIMITIVE_TRIANGLES);
     
     
     for (int j = 0; j < rows; j++) {
@@ -26,65 +26,67 @@ void ofApp::setup(){
             
             float x = i*scl;
             float y = j*scl;
-            //float z = ofRandom(-10,10);
-            float z = 0;
+            float z = ofMap(ofNoise(xoff, yoff),0,1,-terrainZPos,terrainZPos);
             mesh.addVertex(ofVec3f(x,y,z));
-            mesh.addColor(ofFloatColor(1,1,1));
+           // mesh.addColor(ofFloatColor(0,0,0));
            
-            //mesh.addColor(ofFloatColor(ofMap(z,-50,50,0,1),ofMap(z,-50,50,0,1),ofMap(z,-50,50,0,1),1));
-            
-            xoff += 0.1;
+            /*mesh.addColor(ofFloatColor(ofMap(z,-terrainZPos,terrainZPos,1,0),
+                                       ofMap(z,-terrainZPos,terrainZPos,1,0),
+                                       ofMap(z,-terrainZPos,terrainZPos,1,0)));*/
+            xoff += 0.09;
         }
-        yoff += 0.1;
+        yoff += 0.09;
     }
     
     ofSetWindowPosition(-ofGetWidth(), 0);
     // Generate order of indices to set triangles per rows and column
     for (int j = 0; j < rows - 1 ; j++) {
         for (int i = 0 ; i < cols - 1; i++) {
-            mesh.addIndex(i+j*cols);         // 0
-            mesh.addIndex((i+1)+j*cols);     // 1
-            mesh.addIndex((i+1)+(j+1)*cols); // 5
+            //mesh.addIndex(i+j*cols);         // 0
+            //mesh.addIndex((i+1)+j*cols);     // 1
+            //mesh.addIndex((i+1)+(j+1)*cols); // 5
             //mesh.addIndex(i+(j+1)*cols);     // 6
             //mesh.addIndex(i+j*cols);         // 0
             
             
-            /*mesh.addIndex(i+j*cols);         // 0
+            mesh.addIndex(i+j*cols);         // 0
             mesh.addIndex((i+1)+j*cols);     // 1
             mesh.addIndex(i+(j+1)*cols);     // 6
             
             mesh.addIndex((i+1)+j*cols);     // 1
             mesh.addIndex((i+1)+(j+1)*cols); // 7
-            mesh.addIndex(i+(j+1)*cols);     // 6*/
+            mesh.addIndex(i+(j+1)*cols);     // 6
             
         }
     }
     
     for (int i = 0 ; i < cols; i++) {
-        mesh.addIndex((rows*cols) - (i) - 1);
+       // mesh.addIndex((rows*cols) - (i) - 1);
     }
     
     for (int j = 0; j < rows - 1 ; j++) {
-        mesh.addIndex(j*rows);
+        //mesh.addIndex(j*rows);
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //light.setPosition(ofVec3f(0,sin(ofGetElapsedTimef())*100,0));
+    light.setPosition(ofVec3f(0,sin(ofGetElapsedTimef())*100,0));
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackgroundGradient( ofColor(40,40,40), ofColor(0,0,0), OF_GRADIENT_CIRCULAR);
-    
+    ofEnableDepthTest();
+    cam.begin();
     ofPushMatrix();
-    ofTranslate(ofGetWidth()*0.5 - terrainW*0.5 + scl*0.5, ofGetHeight()*0.5 - terrainH*0.5 + scl*0.5);
+    //ofTranslate(ofGetWidth()*0.5 - terrainW*0.5 + scl*0.5, ofGetHeight()*0.5 - terrainH*0.5 + scl*0.5);
+    ofTranslate(-terrainW*0.5 + scl*0.5, -terrainH*0.5 + scl*0.5);
     //ofRotateX(60);
     
     //ofTranslate(0, -terrainH*0.5);
     
-    for (int j = 0; j < rows; j++) {
+   /* for (int j = 0; j < rows; j++) {
         xoff = 0;
         for (int i = 0 ; i < cols; i++) {
             float z = ofMap(ofNoise(xoff, yoff,i+j ),0,1,-1*terrainZPos,terrainZPos);
@@ -92,12 +94,12 @@ void ofApp::draw(){
             xoff += 0.005;
         }
         yoff += 0.005;
-    }
-    
+    }*/
   
     ofEnableLighting();
     light.enable();
     
+    ofSetColor(0);
     mesh.draw();
     
     light.disable();
@@ -128,6 +130,8 @@ void ofApp::draw(){
             }
         }
     }
+    cam.end();
+    ofDisableDepthTest();
 }
 
 //--------------------------------------------------------------

@@ -36,5 +36,6 @@ class ofApp : public ofBaseApp{
     
     //light
     ofLight light;
+    ofEasyCam cam;
 
 };
